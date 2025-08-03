@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Smile HQ Dental Clinic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            light: '#E0F7FA',
+                            DEFAULT: '#007B8E',
+                            dark: '#005F73',
+                        },
+                        secondary: '#F0F4F8',
+                        'text-primary': '#005F73',
+                        'text-secondary': '#334155',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom styles for the blog post expansion animation */
+        .blog-card {
+            transition: all 0.5s ease-in-out;
+            transform-origin: top;
+            position: relative;
+        }
+        .blog-card-content {
+            max-height: 150px;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            position: relative;
+        }
+        .blog-card-content p:first-of-type {
+            margin-bottom: 1rem;
+        }
+        .blog-card.expanded {
+            position: relative;
+            z-index: 10;
+            grid-column: 1 / -1; /* This makes the card span all columns */
+        }
+        .blog-card.expanded .blog-card-content {
+            max-height: 2000px; /* A large value to allow full expansion */
+        }
+    </style>
+</head>
+<body class="bg-secondary font-sans">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3">
+                <img src="./Images/Logo.png" alt="Smile HQ Dental Clinic Logo" class="h-10 w-auto">
+                <div>
+                    <div class="text-xl font-medium text-text-primary leading-tight">Smile HQ</div>
+                    <div class="text-xs font-light text-text-secondary tracking-widest leading-tight">DENTAL CLINIC</div>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="text-text-secondary hover:text-primary-dark transition-colors duration-300">Home</a>
+                <a href="index.html#about" class="text-text-secondary hover:text-primary-dark transition-colors duration-300">About Us</a>
+                <a href="index.html#services" class="text-text-secondary hover:text-primary-dark transition-colors duration-300">Services</a>
+                <a href="#" class="text-primary-dark font-medium transition-colors duration-300">Blog</a>
+                <a href="index.html#contact" class="text-text-secondary hover:text-primary-dark transition-colors duration-300">Contact</a>
+            </div>
+            <a href="index.html#contact" class="hidden md:block bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                Book Now
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-primary-dark">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="index.html" class="block text-text-secondary hover:text-primary-dark transition-colors duration-300">Home</a>
+            <a href="index.html#about" class="block text-text-secondary hover:text-primary-dark transition-colors duration-300">About Us</a>
+            <a href="index.html#services" class="block text-text-secondary hover:text-primary-dark transition-colors duration-300">Services</a>
+            <a href="#" class="block text-primary-dark font-medium transition-colors duration-300">Blog</a>
+            <a href="index.html#contact" class="block text-text-secondary hover:text-primary-dark transition-colors duration-300">Contact</a>
+            <a href="index.html#contact" class="block mt-4 w-full text-center bg-primary hover:bg-primary-dark text-white font-semibold px-5 py-2 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                Book an Appointment
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Blog Header Section -->
+        <section class="py-20 md:py-28 text-center bg-white">
+            <div class="container mx-auto px-6">
+                <h1 class="text-4xl md:text-6xl font-bold text-text-primary leading-tight">Our Dental Health Blog</h1>
+                <p class="mt-4 text-lg text-text-secondary max-w-2xl mx-auto">Discover useful tips, expert advice, and the latest news on oral care from Dr. Anita Chaudhary and her team.</p>
+            </div>
+        </section>
+
+        <!-- Blog Posts Section -->
+        <section class="py-20 md:py-28 bg-secondary">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-container">
+                    <!-- Blog Post 1: The Truth About Root Canals -->
+                    <div class="blog-card bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                        <img src="./Images/blog_rct.png" alt="A diagram of a tooth during a root canal procedure" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-text-primary">The Truth About Root Canals: No Pain, All Gain!</h3>
+                            <p class="text-sm text-gray-500 mt-2">By Dr. Anita Chaudhary · August 5, 2024</p>
+                            <div class="blog-card-content">
+                                <p class="text-text-secondary">When you hear the term "root canal," what comes to mind? For many in Jaipur, it's often a feeling of fear or dread. The truth, however, is far from this misconception. A root canal treatment is one of the most effective and common procedures we perform to alleviate severe tooth pain and save your natural tooth.</p>
+                                <h4 class="text-lg font-semibold text-text-primary mt-4">Why Would I Need a Root Canal?</h4>
+                                <p class="mt-2 text-text-secondary">A root canal, or Endodontic treatment, is necessary when the pulp (the soft tissue inside your tooth) becomes inflamed or infected. This can happen due to a deep cavity, a cracked tooth, or a serious injury. The infection causes intense pain, sensitivity, and sometimes swelling. Without treatment, the infection can spread, leading to tooth loss and affecting your overall health.</p>
+                                <h4 class="text-lg font-semibold text-text-primary mt-4">A Pain-Free Experience at Smile HQ</h4>
+                                <p class="mt-2 text-text-secondary">The fear of pain is the number one reason people delay treatment. At Smile HQ Dental Clinic, we prioritize your comfort. Thanks to modern anesthetics and advanced techniques, a root canal procedure is now no more uncomfortable than getting a simple filling. The primary goal of the treatment is actually to **relieve** your pain, not cause it.</p>
+                                <ul class="list-disc list-inside mt-2 text-text-secondary">
+                                    <li>We use local anesthesia to ensure you feel nothing during the procedure.</li>
+                                    <li>Our clinic is equipped with modern technology that makes the process faster and more precise.</li>
+                                    <li>Dr. Anita Chaudhary and her team are highly experienced and committed to a gentle, caring approach.</li>
+                                </ul>
+                                <p class="mt-4 text-text-secondary font-semibold">Don't let fear keep you in pain. If you're experiencing severe toothache, it's time to act. Visit us at our Malviya Nagar clinic to get expert, pain-free care. We are your trusted dentist in Jaipur for all your dental needs.</p>
+                            </div>
+                            <button class="read-more-btn mt-4 inline-block text-primary font-medium hover:underline">Read More &rarr;</button>
+                        </div>
+                    </div>
+                    <!-- Blog Post 2: Your Guide to a Dazzling Smile in Jaipur -->
+                    <div class="blog-card bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                        <img src="./Images/blog_cosmetic.png" alt="Before and after a cosmetic dental procedure" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-text-primary">Your Guide to a Dazzling Smile in Jaipur</h3>
+                            <p class="text-sm text-gray-500 mt-2">By Dr. Anita Chaudhary · July 28, 2024</p>
+                            <div class="blog-card-content">
+                                <p class="text-text-secondary">Explore the world of cosmetic dentistry at our Jaipur clinic. From veneers to teeth whitening, find out how we can transform your smile and boost your confidence.</p>
+                                <h4 class="text-lg font-semibold text-text-primary mt-4">Cosmetic Dentistry Options at Smile HQ</h4>
+                                <p class="mt-2 text-text-secondary">At Smile HQ, we believe that everyone deserves a smile they can be proud of. Cosmetic dentistry is the art of improving the appearance of your teeth, and we offer a range of services to achieve your aesthetic goals.</p>
+                                <ul class="list-disc list-inside mt-2 text-text-secondary">
+                                    <li>Teeth Whitening: Our professional whitening treatments can dramatically lighten your smile in just one visit.</li>
+                                    <li>Porcelain Veneers: Thin, custom-made shells that cover the front surface of your teeth to correct issues like discoloration, chips, or gaps.</li>
+                                    <li>Dental Bonding: A quick and affordable way to repair chipped, cracked, or stained teeth.</li>
+                                    <li>Smile Makeovers: A comprehensive plan combining multiple cosmetic procedures to achieve your dream smile.</li>
+                                </ul>
+                                <p class="mt-4 text-text-secondary font-semibold">Ready to get the smile you've always wanted? Schedule a cosmetic consultation with Dr. Anita Chaudhary to discuss the best options for you.</p>
+                            </div>
+                            <button class="read-more-btn mt-4 inline-block text-primary font-medium hover:underline">Read More &rarr;</button>
+                        </div>
+                    </div>
+                    <!-- Blog Post 3: Dental Implants - The Permanent Solution -->
+                    <div class="blog-card bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                        <img src="./Images/blog_implants.png" alt="A dental implant next to a natural tooth" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-text-primary">Dental Implants: The Permanent Solution for Missing Teeth</h3>
+                            <p class="text-sm text-gray-500 mt-2">By Dr. Anita Chaudhary · July 15, 2024</p>
+                            <div class="blog-card-content">
+                                <p class="mt-4 text-text-secondary">Losing a tooth doesn't have to mean losing your smile. We explain why dental implants are the most effective and natural-looking way to restore your teeth.</p>
+                                <h4 class="text-lg font-semibold text-text-primary mt-4">Why Choose Dental Implants?</h4>
+                                <p class="mt-2 text-text-secondary">Unlike dentures or bridges, a dental implant replaces the entire tooth, from the root up. This provides unmatched stability, preserves bone structure, and prevents future dental problems. At Smile HQ, we use high-quality materials and precise surgical techniques to ensure a comfortable and successful procedure.</p>
+                                <p class="mt-4 text-text-secondary font-semibold">Regain your confidence and the ability to chew and speak with ease. Contact us to learn if dental implants are the right solution for you.</p>
+                            </div>
+                            <button class="read-more-btn mt-4 inline-block text-primary font-medium hover:underline">Read More &rarr;</button>
+                        </div>
+                    </div>
+                    <!-- Blog Post 4: Orthodontics Beyond Braces -->
+                    <div class="blog-card bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                        <img src="./Images/blog_braces.png" alt="Clear aligners and traditional braces on a table" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-text-primary">Orthodontics: Straighten Your Smile with Modern Solutions</h3>
+                            <p class="text-sm text-gray-500 mt-2">By Dr. Anita Chaudhary · July 1, 2024</p>
+                            <div class="blog-card-content">
+                                <p class="mt-4 text-text-secondary">Are you ready for a straighter smile? Discover our range of orthodontic options, from traditional braces to clear aligners, designed for a better, healthier bite.</p>
+                                <h4 class="text-lg font-semibold text-text-primary mt-4">Invisalign® and Clear Aligners</h4>
+                                <p class="mt-2 text-text-secondary">For a discreet and comfortable way to straighten your teeth, consider our clear aligner treatments. These removable aligners are virtually invisible and offer flexibility for your lifestyle, without the food restrictions of traditional braces.</p>
+                                <p class="mt-4 text-text-secondary font-semibold">Find the perfect orthodontic solution for you. Book a consultation with us today to explore your options.</p>
+                            </div>
+                            <button class="read-more-btn mt-4 inline-block text-primary font-medium hover:underline">Read More &rarr;</button>
+                        </div>
+                    </div>
+                    <!-- Blog Post 5: Keeping Your Child's Smile Healthy in Jaipur -->
+                    <div class="blog-card bg-white rounded-lg shadow-lg overflow-hidden transition-shadow duration-300 hover:shadow-xl">
+                        <img src="./Images/blog_kids.png" alt="A child smiling in a dental chair" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-text-primary">Kids Dental Health: Tips for Parents in Jaipur</h3>
+                            <p class="text-sm text-gray-500 mt-2">By Dr. Anita Chaudhary · June 10, 2024</p>
+                            <div class="blog-card-content">
+                                <p class="mt-4 text-text-secondary">Setting your child up for a lifetime of healthy smiles starts early. Get expert tips on pediatric dentistry, from first tooth care to cavity prevention.</p>
+                                <h4 class="text-lg font-semibold text-text-primary mt-4">Making Dental Visits Fun for Kids</h4>
+                                <p class="mt-2 text-text-secondary">Our clinic is designed to be a welcoming place for children. Dr. Anita Chaudhary specializes in pediatric care, focusing on a gentle approach to build positive associations with dental health from a young age. From fluoride treatments to dental sealants, we help prevent problems before they start.</p>
+                                <p class="mt-4 text-text-secondary font-semibold">Give your child the gift of a healthy smile. Call us to schedule their first friendly dental visit!</p>
+                            </div>
+                            <button class="read-more-btn mt-4 inline-block text-primary font-medium hover:underline">Read More &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2024 Smile HQ Dental Clinic. All Rights Reserved.</p>
+            <p class="text-sm text-primary-light/70 mt-2">Designed with care for your smile.</p>
+        </div>
+    </footer>
+    <script>
+        // JavaScript for mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // JavaScript for blog post expansion
+        const blogContainer = document.getElementById('blog-container');
+        blogContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('read-more-btn')) {
+                const button = e.target;
+                const card = button.closest('.blog-card');
+                
+                // Toggle the 'expanded' class on the clicked card
+                card.classList.toggle('expanded');
+
+                // Adjust button text based on the expanded state
+                if (card.classList.contains('expanded')) {
+                    button.innerHTML = 'Read Less &rarr;';
+                    // Optional: hide other cards to focus on the expanded one
+                    document.querySelectorAll('.blog-card').forEach(c => {
+                        if (c !== card) {
+                            c.style.display = 'none';
+                        }
+                    });
+                } else {
+                    button.innerHTML = 'Read More &rarr;';
+                    // Show all other cards again
+                    document.querySelectorAll('.blog-card').forEach(c => {
+                        c.style.display = 'block'; // Or 'flex' if needed for the layout
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
